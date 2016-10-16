@@ -1,6 +1,7 @@
 #include "file_handler.h"
-#include <fstream>
+#include <cstdio>
 #include <stdexcept>
+#include <string>
 
 namespace vignere_coding {
 
@@ -9,32 +10,38 @@ FileHandler& FileHandler::get_instance() {
     return instance;
 }
 
-std::vector<std::string> FileHandler::read_from_file(const std::string &file_name) {
-    std::ifstream file_stream(file_name);
-    std::vector<std::string> content;
-    std::string line;
+MyContainer<MyString> FileHandler::read_from_file(const char *file_name) {
+    FILE *input_file;
+    input_file = fopen(file_name, "r+");
 
-    if (!file_stream.is_open()) {
-        throw std::runtime_error("Nem lehet megnyitni a " + file_name + "fájlt!");
+    if (input_file == NULL) {
+        throw std::runtime_error("Nem lehet megnyitni a " + std::string(file_name) + "fájlt!");
     }
 
-    while(std::getline(file_stream, line)) {
-        content.push_back(line);
+    MyContainer<MyString> content;
+    char line[256];
+
+    while(fgets(line, 255, input_file) != NULL) {
+        const MyString str(line);
+        content.push_back(str);
     }
 
-    file_stream.close();
+    fclose(input_file);
     return content;
 }
 
-void FileHandler::write_to_file(const std::string &file_name, const std::string &data) {
-    std::ofstream file_stream(file_name);
+void FileHandler::write_to_file(const char *file_name, const MyString &data) {
+    FILE *output_file;
+    output_file = fopen(file_name, "w");
 
-    if (!file_stream.is_open()) {
-        throw std::runtime_error("Nem lehet megnyitni a " + file_name + "fájlt!");
+    if (output_file == NULL) {
+        throw std::runtime_error("Nem lehet megnyitni a " + std::string(file_name) + "fájlt!");
     }
 
-    file_stream << data;
-    file_stream.close();
+    const char* str = data.get_str();
+    fputs(str, output_file);
+
+    fclose(output_file);
 }
 
 
