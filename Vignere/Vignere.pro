@@ -7,7 +7,10 @@ SOURCES += main.cpp \
     user_message.cpp \
     user_keyword.cpp \
     encoder.cpp \
-    file_handler.cpp
+    file_handler.cpp \
+    my_map.cpp \
+    my_string.cpp \
+    my_container.cpp
 
 QMAKE_CXXFLAGS_DEBUG = -g -Og
 QMAKE_CXXFLAGS_RELEASE = -O3
@@ -18,5 +21,8 @@ HEADERS += \
     user_keyword.h \
     encoder.h \
     file_handler.h \
-    base_message.h
+    base_message.h \
+    my_string.h \
+    my_map.h \
+    my_container.h
 

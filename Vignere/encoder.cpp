@@ -3,12 +3,14 @@
 
 namespace vignere_coding {
 
-Encoder::Encoder(const std::vector<std::string> &table) {
+Encoder::Encoder(const MyContainer<MyString> &table) {
     size_t text_index = 0;
     size_t key_index = 0;
 
-    for (const auto& line : table) {
-        for (const auto& code : line) {
+    for (size_t pos = 0; pos < table.get_size(); ++pos) {
+        const auto& line = table.at(pos);
+        for (size_t loop = 0; loop < line.get_size(); ++loop) {
+            const auto& code = line.at(loop);
             coding_table[text_index][key_index++] = code;
         }
         ++text_index;
@@ -16,9 +18,9 @@ Encoder::Encoder(const std::vector<std::string> &table) {
     }
 }
 
-std::string Encoder::encode_message(const std::string &message, const std::string &keytext) {
-    std::string coded_message;
-    for (size_t pos = 0; pos < message.length(); ++pos) {
+MyString Encoder::encode_message(const MyString &message, const MyString &keytext) {
+    MyString coded_message;
+    for (size_t pos = 0; pos < message.get_size(); ++pos) {
         size_t row_id = -1;
         for (row_id = 0; row_id < ABC_LENGTH; row_id++) {
             if (coding_table[row_id][0] == message.at(pos)) {

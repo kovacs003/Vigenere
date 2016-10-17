@@ -1,28 +1,23 @@
 #include "user_keyword.h"
 
 namespace  vignere_coding {
-UserKeyword::UserKeyword(const std::string &mess)
+UserKeyword::UserKeyword(const MyString& mess)
     : BaseMessage(mess) {
-    if (message.back() == '\n') {
-        message.pop_back();
-    }
     convert_to_uppercase();
 }
 
-std::string UserKeyword::get_with_length() {
-    return get_with_length(message.length());
+MyString UserKeyword::get_with_length() {
+    return message;
 }
 
-std::string UserKeyword::get_with_length(const size_t &size) {
-    std::string extended_key = message;
-    while (extended_key.length() < size) {
-        extended_key.append(message);
-    }
-    while (extended_key.length() > size) {
-        extended_key.pop_back();
+MyString UserKeyword::get_with_length(const size_t &size) {
+    char* extended_key = new char[size+1];
+    const auto& len = message.get_length();
+    for (size_t loop = 0; loop < size; ++loop) {
+        extended_key[loop] = message.at(loop%len);
     }
 
-    return extended_key;
+    return MyString(extended_key, size);
 }
 
 } // namepsacevignere_coding

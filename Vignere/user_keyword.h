@@ -7,10 +7,10 @@ namespace vignere_coding {
 
 class UserKeyword : public BaseMessage{
 public:
-    explicit UserKeyword(const std::string& mess);
+    explicit UserKeyword(const MyString& mess);
 
-    std::string get_with_length();
-    std::string get_with_length(const size_t& size);
+    MyString get_with_length();
+    MyString get_with_length(const size_t& size);
 };
 
 }  // namespace vignere_coding
