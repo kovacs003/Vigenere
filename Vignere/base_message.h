@@ -12,7 +12,7 @@ public:
     explicit BaseMessage(const MyString& mess)
         : message(mess) {}
 
-    ~BaseMessage() = default;
+    virtual ~BaseMessage() = default;
 
     void convert_to_uppercase() {
         const auto& diff_between_cases

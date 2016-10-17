@@ -11,6 +11,9 @@ class UserMessage : public BaseMessage {
     void remove_invalid_characters();
     MyMap<char, char> delocalization_table;
 
+    constexpr static char spec_prefix1 = 0xc3;
+    constexpr static char spec_prefix2 = 0xc5;
+
     inline bool is_alpha(const char& letter) const noexcept {
         return ('a' <= letter && letter <= 'z')
                     || ('A' <= letter && letter <= 'Z');

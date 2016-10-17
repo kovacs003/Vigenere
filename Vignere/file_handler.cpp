@@ -32,7 +32,7 @@ MyContainer<MyString> FileHandler::read_from_file(const char *file_name) {
 
 void FileHandler::write_to_file(const char *file_name, const MyString &data) {
     FILE *output_file;
-    output_file = fopen(file_name, "w");
+    output_file = fopen(file_name, "w+");
 
     if (output_file == NULL) {
         throw std::runtime_error("Nem lehet megnyitni a " + std::string(file_name) + "fájlt!");

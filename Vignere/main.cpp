@@ -1,4 +1,5 @@
 #include <iostream>
+#include <locale>
 #include "encoder.h"
 #include "file_handler.h"
 #include "user_keyword.h"
@@ -7,6 +8,7 @@
 using namespace vignere_coding;
 
 int main(int , char*[]) {
+    setlocale(LC_ALL, "hu_HU.UTF-8");
     char read_text[256];
 
     std::cout << "Kerem a nyilt szoveget (max. 255 karakter): " << std::endl;

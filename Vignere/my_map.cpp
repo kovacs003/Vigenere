@@ -6,7 +6,6 @@ namespace vignere_coding {
 template class MyMap<char, char>;
 template class MyMap<unsigned char, unsigned char>;
 template class MyMap<unsigned short, unsigned short>;
-template class MyMap<unsigned short, char>;
 
 template<typename KeyType, typename ValueType>
 MyMap<KeyType, ValueType>::MyMap()
